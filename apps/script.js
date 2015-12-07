@@ -7,14 +7,14 @@ app.config(['$routeProvider',
       when('/login', {
         templateUrl: 'partials/login.html',
         controller: 'LoginCtrl'
+      }).
+      when('/home', {
+        templateUrl: 'partials/home.html',
+        controller: 'HomeCtrl'
       })
-      // when('/songs/new', {
-      //   templateUrl: 'partials/song-form.html',
-      //   controller: 'SongFormCtrl'
-      // }).
       // when('/songs/:songId', {
       //   templateUrl: 'partials/songdetail.html',
       //   controller: 'SongDetailCtrl'
       // })
-      .otherwise({ redirectTo: '/login'});
+      // .otherwise({ redirectTo: '/login'});
   }]);
