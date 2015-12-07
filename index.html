@@ -4,21 +4,24 @@
   <meta charset="utf-8">
   <title>SAM Pinterest</title>
   <link rel="stylesheet" type="text/css" href="lib/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="main.css">
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
 
-<body ng-app="">
-	
+<body ng-app="Pinterest">
 	</div>
 	<div ng-view></div>
 
+	<script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	
 	<script src="lib/bower_components/angular/angular.min.js"></script>
 	<script src="lib/bower_components/angular-route/angular-route.js"></script>
 	<script src="lib/bower_components/firebase/firebase.js"></script>
 	<script src="lib/bower_components/angularfire/dist/angularfire.min.js"></script>
-	<script src="lib/bower_components/bootstrap/dist/js/bootstrap.min"></script>
-	<script src="lib/bower_components/jquery/dist/jquery.min"></script>
-	<script src="app/script.js"></script>
+	<script src="apps/script.js"></script>
+	<script src="apps/factories/auth.js"></script>
+	<script src="apps/controllers/LoginCtrl.js"></script>
+	<script src="apps/controllers/HomeCtrl.js"></script>
 	
 
 </body>
