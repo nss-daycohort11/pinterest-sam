@@ -1,2 +1,9 @@
 <h1>Enter Image URL:  <input type="text" id="image" ng-model="image">
 <button ng-click="addImage()" id="add">Add</button>
+
+
+<div ng-repeat="pin in userpins">
+ <div class="img-wrap col-md-3">
+   <img ng-src="{{ pin.url }}" height="300" width="250">
+ </div>
+</div>
