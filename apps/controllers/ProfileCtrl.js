@@ -9,36 +9,40 @@ app.controller("ProfileCtrl", ["$scope", "$location", "$firebaseObject", "Auth",
 	      Logout();
 	      console.log("logged out");
 	    };
-
-		// Firebase ref for Pins
-		var allUserPins = new Firebase("https://sam-pinterest.firebaseio.com/users/" + uid + "/userpins");
-		$scope.userpins = $firebaseArray(allUserPins);
-		console.log("userpins", $scope.userpins);
+	    // Deleting 
+		$scope.delete = function(pin) {
+			console.log("pin", pin);
+			console.log("user pin delete", $scope.userpins);
+			$scope.userpins.$remove(pin);
+		}
 
 
 		$scope.addImage = function() {
-  			var url = $scope.image;
-  			console.log("image", $scope.image);
+			var url = $scope.image;
+			// Firebase ref for all Pins
+			var allPins = new Firebase("https://sam-pinterest.firebaseio.com/pins/");
+			$scope.everypin = $firebaseArray(allPins);
+			console.log("everypin", $scope.everypin);
 			console.log("ProfileCtrl click");
-			console.log("scope.data", $scope.data);
-				allUserPins.push({
-					url: url
-				});
-
-  			var allPins = new Firebase("https://sam-pinterest.firebaseio.com/pins/");
-			$scope.data = $firebaseObject(allPins);
-			console.log("ProfileCtrl click");
-			console.log("scope.data", $scope.data);
-				allPins.push({
+				$scope.everypin.$add({
 					url: url,
 					uid: uid
 				})	
 		}
 
-		$scope.delete = function(pin) {
-			$scope.userpins.$remove(pin);
-		}
-
+	$scope.filteredArray = [];
+    var pinsRef = new Firebase("https://sam-pinterest.firebaseio.com/pins");
+    var pinsArray = $firebaseArray(pinsRef);
+    pinsArray.$loaded()
+        .then(function(){
+            angular.forEach(pinsArray, function(pin) {
+                console.log("pin", pin);
+                if (uid === pin.uid){
+                    $scope.filteredArray.push(pin);
+                }
+            })
+            return $scope.filteredArray;
+        });
 	}
 ]);
 

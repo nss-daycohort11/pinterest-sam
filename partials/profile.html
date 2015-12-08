@@ -17,8 +17,7 @@
 <h1>Enter Image URL:  <input type="text" id="image" ng-model="image"></h1>
 <button ng-click="addImage()" id="add">Add</button>
 
-
-<div ng-repeat="pin in userpins">
+<div ng-repeat="pin in filteredArray">
  <div class="img-wrap col-md-3">
    <img ng-src="{{ pin.url }}" height="300" width="250">
    <button ng-click="delete(pin)" id="delete">X</button>

@@ -15,6 +15,10 @@ app.config(['$routeProvider',
       when('/profile', {
         templateUrl: 'partials/profile.html',
         controller: 'ProfileCtrl'
+      }).
+      when('/animals', {
+        templateUrl: 'partials/animals.html',
+        controller: 'ProfileCtrl'
       })
-      // .otherwise({ redirectTo: '/'});
+      .otherwise({ redirectTo: '/'});
   }]);

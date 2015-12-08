@@ -1,0 +1,6 @@
+<div ng-repeat="pin in animalpins">
+ <div class="img-wrap col-md-3">
+   <img ng-src="{{ pin.url }}" height="300" width="250">
+   <button ng-click="delete(pin)" id="delete">X</button>
+ </div>
+</div>
