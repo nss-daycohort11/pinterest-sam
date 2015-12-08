@@ -37,6 +37,17 @@ app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "s
 		});
 
 
+		$scope.addPin = function(pinIt) {
+  		var url = pinIt;
+  		console.log("image", pinIt);
+  		var pinsRef = new Firebase("https://sam-pinterest.firebaseio.com/users/" + authData.uid + "/userpins")
+				console.log("pinsRef ", pinsRef);
+				pinsRef.push({
+					url: pinIt
+				})
+				// pinsRef.users.userpins.$add(pinIt);
+			    console.log("I'm done Pinning!!!");
+  	  };	
 
 
 }]);
