@@ -13,7 +13,7 @@
       	</div>
 	</nav>
 
-<div ng-repeat="pin in allpins">
+<div ng-repeat="pin in allpins | unique:'url'">
  <div class="img-wrap col-md-3">
    <img ng-src="{{ pin.url }}" height="300" width="250">
    <button type="button" ng-click="addPin(pin.url)">Pin-it</button> 

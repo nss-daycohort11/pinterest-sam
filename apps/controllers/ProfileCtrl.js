@@ -28,6 +28,7 @@ app.controller("ProfileCtrl", ["$scope", "$location", "$firebaseObject", "Auth",
 					url: url,
 					uid: uid
 				})	
+				
 		}
 
 	$scope.filteredArray = [];
