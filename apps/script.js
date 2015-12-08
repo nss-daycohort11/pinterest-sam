@@ -16,5 +16,5 @@ app.config(['$routeProvider',
         templateUrl: 'partials/profile.html',
         controller: 'ProfileCtrl'
       })
-      // .otherwise({ redirectTo: '/'});
+      .otherwise({ redirectTo: '/'});
   }]);
