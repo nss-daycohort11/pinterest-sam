@@ -1,4 +1,20 @@
-<h1>Enter Image URL:  <input type="text" id="image" ng-model="image">
+<!-- Navigation -->
+	<nav>
+		<div class="row">
+        	<div class="col-md-12">
+          		<div id="navigation">
+            		<ul>
+		              <li><a href="#/home" id="home">Home</a></li>
+		              <li><a href="#/profile" id="profile">Profile</a></li>
+		              <li><a href="#" id="logout" ng-click="logout()">Log Out</a></li>
+            		</ul>
+          		</div> 
+        	</div>
+      	</div>
+	</nav>
+
+
+<h1>Enter Image URL:  <input type="text" id="image" ng-model="image"></h1>
 <button ng-click="addImage()" id="add">Add</button>
 
 

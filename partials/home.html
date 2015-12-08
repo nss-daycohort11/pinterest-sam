@@ -1,3 +1,18 @@
+<!-- Navigation -->
+	<nav>
+		<div class="row">
+        	<div class="col-md-12">
+          		<div id="navigation">
+            		<ul>
+		              <li><a href="#/home" id="home">Home</a></li>
+		              <li><a href="#/profile" id="profile">Profile</a></li>
+		              <li><a href="#" id="logout" ng-click="logout()">Log Out</a></li>
+            		</ul>
+          		</div> 
+        	</div>
+      	</div>
+	</nav>
+
 <div ng-repeat="pin in allpins">
  <div class="img-wrap col-md-3">
    <img ng-src="{{ pin.url }}" height="300" width="250">
