@@ -1,5 +1,5 @@
-app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "storage",
-  function($scope, $location, $firebaseObject, Auth, storage) {
+app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "storage", "$firebaseArray",
+  function($scope, $location, $firebaseObject, Auth, storage, $firebaseArray) {
 
   	var ref = new Firebase("https://sam-pinterest.firebaseio.com");
 	var usersFirebase = ref.child("users");
@@ -30,6 +30,13 @@ app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "s
 			}
 		// Setting userID 
 		storage.setUserId(authData.uid);
+
+		// Firebase ref for Pins
+		var pinsRef = new Firebase("https://sam-pinterest.firebaseio.com/pins/")
+		$scope.allpins = $firebaseArray(pinsRef);
 		});
+
+
+
 
 }]);
