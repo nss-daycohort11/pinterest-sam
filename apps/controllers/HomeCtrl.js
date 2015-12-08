@@ -1,5 +1,5 @@
-app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth",
-  function($scope, $location, $firebaseObject, Auth) {
+app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "storage",
+  function($scope, $location, $firebaseObject, Auth, storage) {
 
   	var ref = new Firebase("https://sam-pinterest.firebaseio.com");
 	var usersFirebase = ref.child("users");
@@ -8,7 +8,7 @@ app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth",
 			var authData = Auth.$getAuth();
 			console.log("authdata2", authData);
 
-		var uidRef = new Firebase("https://sam-pinterest.firebaseio.com/users/" + authData.uid)	
+	var uidRef = new Firebase("https://sam-pinterest.firebaseio.com/users/" + authData.uid)	
 	$scope.data = $firebaseObject(uidRef);
 
 	$scope.data.$loaded() 
@@ -28,6 +28,8 @@ app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth",
 					displayName: authData.github.displayName
 				})
 			}
+		// Setting userID 
+		storage.setUserId(authData.uid);
 		});
 
 }]);
