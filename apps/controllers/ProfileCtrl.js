@@ -1,7 +1,7 @@
 app.controller("ProfileCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "storage",
   	function($scope, $location, $firebaseObject, Auth, storage) {
 
-  		// Getting UuserID
+  		// Getting UserID
   		var uid = storage.getUserId();
   		console.log("uid", uid);
 
