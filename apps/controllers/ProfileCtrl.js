@@ -33,5 +33,10 @@ app.controller("ProfileCtrl", ["$scope", "$location", "$firebaseObject", "Auth",
 					uid: uid
 				})	
 		}
-	}
-]);  	
+
+		$scope.delete = function(pin) {
+			$scope.userpins.$remove(pin);
+		}
+
+		}
+]);
