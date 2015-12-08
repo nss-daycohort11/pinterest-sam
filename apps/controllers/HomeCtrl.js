@@ -1,14 +1,21 @@
-app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "storage", "$firebaseArray",
-  function($scope, $location, $firebaseObject, Auth, storage, $firebaseArray) {
+app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "storage", "$firebaseArray", "Logout",
+  function($scope, $location, $firebaseObject, Auth, storage, $firebaseArray, Logout) {
 
   	var ref = new Firebase("https://sam-pinterest.firebaseio.com");
 	var usersFirebase = ref.child("users");
 	console.log("usersfirebase", usersFirebase);
 	var userExists = false;
-			var authData = Auth.$getAuth();
-			console.log("authdata2", authData);
+	var authData = Auth.$getAuth();
+	console.log("authdata2", authData);
+	var auth;
 
-	var uidRef = new Firebase("https://sam-pinterest.firebaseio.com/users/" + authData.uid)	
+	 // Logout
+    $scope.logout = function(){
+      Logout();
+      console.log("logged out");
+    };
+
+	var uidRef = new Firebase("https://sam-pinterest.firebaseio.com/users/" + authData.uid);	
 	$scope.data = $firebaseObject(uidRef);
 
 	$scope.data.$loaded() 
@@ -17,7 +24,7 @@ app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "s
 
 
 			if ($scope.data.$value !== null) {
-				console.log('user alreayd saved')
+				console.log('user alreayd saved');
 				userExists = true;
 			}
 			if (userExists === false) {
@@ -26,17 +33,28 @@ app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "s
 					uid: authData.uid,
 					image: authData.github.profileImageURL,
 					displayName: authData.github.displayName
-				})
+				});
 			}
 		// Setting userID 
 		storage.setUserId(authData.uid);
 
 		// Firebase ref for Pins
-		var pinsRef = new Firebase("https://sam-pinterest.firebaseio.com/pins/")
+		var pinsRef = new Firebase("https://sam-pinterest.firebaseio.com/pins/");
 		$scope.allpins = $firebaseArray(pinsRef);
 		});
 
 
+		$scope.addPin = function(pinIt) {
+  		var url = pinIt;
+  		console.log("image", pinIt);
+  		var pinsRef = new Firebase("https://sam-pinterest.firebaseio.com/users/" + authData.uid + "/userpins")
+				console.log("pinsRef ", pinsRef);
+				pinsRef.push({
+					url: pinIt
+				})
+				// pinsRef.users.userpins.$add(pinIt);
+			    console.log("I'm done Pinning!!!");
+  	  };	
 
 
 }]);

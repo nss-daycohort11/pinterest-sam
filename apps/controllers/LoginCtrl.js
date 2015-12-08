@@ -1,5 +1,5 @@
 app.controller("LoginCtrl", ["$scope", "Auth", "$location", "$firebaseObject",
-  function($scope, Auth, $location, $firebaseObject ) {
+  function($scope, Auth, $location, $firebaseObject) {
 
 	$scope.auth = Auth;
 	var ref = new Firebase("https://sam-pinterest.firebaseio.com");
@@ -12,10 +12,6 @@ app.controller("LoginCtrl", ["$scope", "Auth", "$location", "$firebaseObject",
 			console.log('User not currently logged in');
 		}
 	});
-
-	$scope.redirect = function(){
-		$location.path("#/home");
-	};
 
     var authData = ref.getAuth();
     console.log("authData: ", authData);
@@ -34,5 +30,9 @@ app.controller("LoginCtrl", ["$scope", "Auth", "$location", "$firebaseObject",
         }
       });
     }
+
+    
+
+   
   
 }]);

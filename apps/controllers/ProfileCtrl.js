@@ -1,34 +1,35 @@
-app.controller("ProfileCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "storage", "$firebaseArray",
-  	function($scope, $location, $firebaseObject, Auth, storage, $firebaseArray) {
-  		var stupid;
+app.controller("ProfileCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "storage", "$firebaseArray", "Logout",
+  	function($scope, $location, $firebaseObject, Auth, storage, $firebaseArray, Logout) {
   		// Getting UserID
   		var uid = storage.getUserId();
   		console.log("uid", uid);
+  		var ref = new Firebase("https://sam-pinterest.firebaseio.com");
+  		// Logout
+	    $scope.logout = function(){
+	      Logout();
+	      console.log("logged out");
+	    };
 
 		// Firebase ref for Pins
-		var pinsRef = new Firebase("https://sam-pinterest.firebaseio.com/users/" + uid + "/userpins")
-		$scope.userpins = $firebaseArray(pinsRef);
+		var allUserPins = new Firebase("https://sam-pinterest.firebaseio.com/users/" + uid + "/userpins");
+		$scope.userpins = $firebaseArray(allUserPins);
 		console.log("userpins", $scope.userpins);
 
 
 		$scope.addImage = function() {
   			var url = $scope.image;
   			console.log("image", $scope.image);
-  			var pinsRef = new Firebase("https://sam-pinterest.firebaseio.com/users/" + uid + "/userpins")
-			$scope.data = $firebaseObject(pinsRef);
 			console.log("ProfileCtrl click");
 			console.log("scope.data", $scope.data);
-				pinsRef.push({
+				allUserPins.push({
 					url: url
-				})
+				});
 
-			var url = $scope.image;
-  			console.log("image", $scope.image);
-  			var pinsRef = new Firebase("https://sam-pinterest.firebaseio.com/pins/")
-			$scope.data = $firebaseObject(pinsRef);
+  			var allPins = new Firebase("https://sam-pinterest.firebaseio.com/pins/");
+			$scope.data = $firebaseObject(allPins);
 			console.log("ProfileCtrl click");
 			console.log("scope.data", $scope.data);
-				pinsRef.push({
+				allPins.push({
 					url: url,
 					uid: uid
 				})	
@@ -38,5 +39,7 @@ app.controller("ProfileCtrl", ["$scope", "$location", "$firebaseObject", "Auth",
 			$scope.userpins.$remove(pin);
 		}
 
-		}
+	}
 ]);
+
+
