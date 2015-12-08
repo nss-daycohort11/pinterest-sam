@@ -47,10 +47,11 @@ app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "s
 		$scope.addPin = function(pinIt) {
   		var url = pinIt;
   		console.log("image", pinIt);
-  		var pinsRef = new Firebase("https://sam-pinterest.firebaseio.com/users/" + authData.uid + "/userpins")
+  		var pinsRef = new Firebase("https://sam-pinterest.firebaseio.com/pins/");
 				console.log("pinsRef ", pinsRef);
 				pinsRef.push({
-					url: pinIt
+					url: pinIt,
+					uid: authData.uid
 				})
 				// pinsRef.users.userpins.$add(pinIt);
 			    console.log("I'm done Pinning!!!");

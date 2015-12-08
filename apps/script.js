@@ -1,5 +1,5 @@
 var app = angular.module("Pinterest", 
-  ["firebase", "ngRoute", "firebase"]);
+  ["firebase", "ngRoute", "angular.filter", "firebase"]);
 
 app.config(['$routeProvider',
   function($routeProvider) {
