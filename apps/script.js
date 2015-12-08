@@ -11,10 +11,10 @@ app.config(['$routeProvider',
       when('/home', {
         templateUrl: 'partials/home.html',
         controller: 'HomeCtrl'
+      }).
+      when('/profile', {
+        templateUrl: 'partials/profile.html',
+        controller: 'ProfileCtrl'
       });
-      // when('/songs/:songId', {
-      //   templateUrl: 'partials/songdetail.html',
-      //   controller: 'SongDetailCtrl'
-      // })
       // .otherwise({ redirectTo: '/login'});
   }]);

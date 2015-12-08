@@ -13,7 +13,6 @@ app.controller("ProfileCtrl", ["$scope", "$location", "$firebaseObject", "Auth",
 	            if (authData.uid === pin.uid){
 	            	show pins on profile page 
 	            }
-
 	        })
 	    });
 		
