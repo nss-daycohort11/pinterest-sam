@@ -1,14 +1,14 @@
-app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth",
-  function($scope, $location, $firebaseObject, Auth) {
+app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "$firebaseArray",
+  function($scope, $location, $firebaseObject, Auth, $firebaseArray) {
 
   	var ref = new Firebase("https://sam-pinterest.firebaseio.com");
 	var usersFirebase = ref.child("users");
 	console.log("usersfirebase", usersFirebase);
 	var userExists = false;
-			var authData = Auth.$getAuth();
-			console.log("authdata2", authData);
+	var authData = Auth.$getAuth();
+	console.log("authdata2", authData);
 
-		var uidRef = new Firebase("https://sam-pinterest.firebaseio.com/users/" + authData.uid)	
+	var uidRef = new Firebase("https://sam-pinterest.firebaseio.com/users/" + authData.uid);	
 	$scope.data = $firebaseObject(uidRef);
 
 	$scope.data.$loaded() 
@@ -17,7 +17,7 @@ app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth",
 
 
 			if ($scope.data.$value !== null) {
-				console.log('user alreayd saved')
+				console.log('user already saved');
 				userExists = true;
 			}
 			if (userExists === false) {
@@ -26,8 +26,49 @@ app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth",
 					uid: authData.uid,
 					image: authData.github.profileImageURL,
 					displayName: authData.github.displayName
-				})
+				});
 			}
 		});
+
+//monkeyin' around
+
+	function AddPins(){
+
+	$scope.imageUrlPin = ""; //add copy to model
+
+	var pinID = new Firebase("https://sam-pinterest.firebaseio.com/pins/pin_" + authData.uid);
+
+	pinID.set({
+		image: imageUrlPin,
+		uid: authData.uid
+	});
+		
+	};
+
+//logic for 
+
+
+var pinsRef = new Firebase("https://sam-pinterest.firebaseio.com/pins");
+var pinsArray = $firebaseArray(pinsRef);
+pinsArray.$loaded()
+    .then(function(){
+        angular.forEach(pinsArray, function(pin) {
+            console.log("pin", pin);
+            if (authData.uid === pin.uid){
+            	show pins on profile page 
+            }
+
+        })
+    });
+	
+
+	
+
+
+
+
+
+
+
 
 }]);

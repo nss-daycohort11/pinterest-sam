@@ -13,15 +13,11 @@ app.controller("LoginCtrl", ["$scope", "Auth", "$location", "$firebaseObject",
 		}
 	});
 
-	$scope.redirect = function(){
-		$location.path("#/home");
-	};
-
     var authData = ref.getAuth();
     console.log("authData: ", authData);
-    //if no login, authenticate with github OAuth
+    //if no login, authenticate with github OAuthf
     if (authData !== null) {
-    	$location.path("/home");
+    	$location.path("#/home");
     }
 
     if(authData === null) {
