@@ -12,9 +12,9 @@ app.config(['$routeProvider',
         templateUrl: 'partials/home.html',
         controller: 'HomeCtrl'
       })
-      // when('/songs/:songId', {
-      //   templateUrl: 'partials/songdetail.html',
-      //   controller: 'SongDetailCtrl'
+      // when('/addPin', {
+      //   templateUrl: 'partials/addPin.html',
+      //   controller: 'addPinCtrlCtrl'
       // })
       // .otherwise({ redirectTo: '/login'});
   }]);

@@ -1,7 +1,7 @@
  
 <div ng-repeat="pin in pins">
   <div class="img-wrap col-md-3">
-    <img src="{{ pin.image }}" height="300" width="250">
+    <img ng-src="{{ pin.image }}" height="300" width="250">
     <button type="button" ng-click="pinIt(pin.image)">Pin-it</button> 
   </div>
 </div>
