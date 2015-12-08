@@ -4,7 +4,7 @@ var app = angular.module("Pinterest",
 app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/login', {
+      when('/', {
         templateUrl: 'partials/login.html',
         controller: 'LoginCtrl'
       }).
@@ -16,5 +16,5 @@ app.config(['$routeProvider',
         templateUrl: 'partials/profile.html',
         controller: 'ProfileCtrl'
       })
-      // .otherwise({ redirectTo: '/login'});
+      // .otherwise({ redirectTo: '/'});
   }]);
