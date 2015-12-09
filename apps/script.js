@@ -22,3 +22,15 @@ app.config(['$routeProvider',
       })
       .otherwise({ redirectTo: '/'});
   }]);
+
+app.run(function () {
+  // Put the onAuth listener in here
+  var ref = new Firebase("https://sam-pinterest.firebaseio.com");
+    ref.onAuth(function(authData) {
+      if (authData) {
+        console.log("Authenticated with uid:", authData.uid);
+      } else {
+        console.log("Client unauthenticated.")
+      }
+  });
+});
