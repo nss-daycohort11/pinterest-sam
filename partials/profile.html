@@ -1,24 +1,34 @@
 <!-- Navigation -->
-	<nav>
+	<nav class="navbar navbar-default">
 		<div class="row">
-        	<div class="col-md-12">
-          		<div id="navigation">
-            		<ul>
-		              <li><a href="#/home" id="home">Home</a></li>
-		              <li><a href="#/profile" id="profile">Profile</a></li>
-		              <li><a href="#" id="logout" ng-click="logout()">Log Out</a></li>
-            		</ul>
-          		</div> 
-        	</div>
+			<div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#/home">Photo Bombs</a>
+		    </div>
+        	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      			<ul class="nav navbar-nav">
+	              <li><a href="#/home" id="home">Home</a></li>
+	              <li><a href="#/profile" id="profile">Profile</a></li>
+	              <li><a href="#" id="logout" ng-click="logout()">Log Out</a></li>
+            </ul>
+          </div> 
       	</div>
 	</nav>
 
-
-<h1>Enter Image URL:  <input type="text" id="image" ng-model="image"></h1>
-<button ng-click="addImage()" id="add">Add</button>
+<div class="row">
+  <div class="col-lg-6 nav-move">
+		<div class="input-group"><input type="text" id="image" ng-model="image" class="form-control" placeholder="Add image url">
+		<span class="input-group-btn"><button ng-click="addImage()" id="add" class="btn btn-default" type="button">Add Pin</button></span>
+		</div>
+	</div>
+</div>
 
 <div ng-repeat="pin in filteredArray | unique:'url'">
- <div class="img-wrap col-md-3">
+ <div class="img-wrap col-md-3 profile-images">
    <img ng-src="{{ pin.url }}" height="300" width="250">
    <button ng-click="delete(pin)" id="delete">X</button>
  </div>
