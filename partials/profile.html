@@ -30,7 +30,7 @@
 <div ng-repeat="pin in filteredArray | unique:'url'">
  <div class="img-wrap col-md-3 profile-images">
    <img ng-src="{{ pin.url }}" height="300" width="250">
-   <button ng-click="delete(pin)" id="delete">X</button>
+   <button ng-click="delete(pin)" id="delete">Delete</button>
  </div>
 </div>
 

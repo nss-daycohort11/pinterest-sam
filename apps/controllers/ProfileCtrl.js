@@ -9,13 +9,6 @@ app.controller("ProfileCtrl", ["$scope", "$location", "$firebaseObject", "Auth",
 	      Logout();
 	      console.log("logged out");
 	    };
-	    // Deleting 
-		$scope.delete = function(pin) {
-			console.log("pin", pin);
-			console.log("user pin delete", $scope.userpins);
-			$scope.userpins.$remove(pin);
-		}
-
 
 		$scope.addImage = function() {
 			var url = $scope.image;
@@ -30,25 +23,14 @@ app.controller("ProfileCtrl", ["$scope", "$location", "$firebaseObject", "Auth",
 				})	
 		}
 
-	// $scope.filteredArray = [];
- //    var pinsRef = new Firebase("https://sam-pinterest.firebaseio.com/pins");
- //    var pinsArray = $firebaseArray(pinsRef);
- //    pinsArray.$loaded()
- //        .then(function(){
- //            angular.forEach(pinsArray, function(pin) {
- //                console.log("pin", pin);
- //                if (uid === pin.uid){
- //                    $scope.filteredArray.push(pin);
- //                }
- //            })
- //            return $scope.filteredArray;
- //        });
 
+		// Filtering
 		var newRef = new Firebase("https://sam-pinterest.firebaseio.com/pins/");
         $scope.filtered = $firebaseArray(newRef);
         var query = newRef.orderByChild("uid").equalTo(uid);
         $scope.filteredArray = $firebaseArray(query);
 
+        // Deleteing
         $scope.delete = function(pin) {
            console.log("pin",pin);
            $scope.filteredArray.$remove(pin);
