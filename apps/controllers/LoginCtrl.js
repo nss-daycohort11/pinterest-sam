@@ -21,18 +21,13 @@ app.controller("LoginCtrl", ["$scope", "Auth", "$location", "$firebaseObject",
     }
 
     if(authData === null) {
-      ref.authWithOAuthPopup("github", function(error, authData) { //1.firebase sends request for request token to github with client id and secret id
-        if (error) {
-          console.log("Login Failed!", error);
-        } else {
-          console.log("Authenticated successfully with payload:", authData);
-          $location.path("#/home");
-        }
-      });
+      // ref.authWithOAuthPopup("github", function(error, authData) { //1.firebase sends request for request token to github with client id and secret id
+      //   if (error) {
+      //     console.log("Login Failed!", error);
+      //   } else {
+      //     console.log("Authenticated successfully with payload:", authData);
+      //     $location.path("#/home");
+      //   }
+      // });
     }
-
-    
-
-   
-  
 }]);

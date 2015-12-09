@@ -12,8 +12,8 @@
         	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       			<ul class="nav navbar-nav">
 	              <li><a href="#/home" id="home">Home</a></li>
-	              <li><a href="#/profile" id="profile">Profile</a></li>
-	              <li><a href="#" id="logout" ng-click="logout()">Log Out</a></li>
+	              <li><a href="#/profile" id="profile">Your Board</a></li>
+	              <li><a href="#/" id="logout" ng-click="logout()">Log Out</a></li>
             </ul>
           </div> 
       	</div>
@@ -23,7 +23,7 @@
 <div ng-repeat="pin in allpins | unique:'url'">
  <div class="img-wrap col-md-3">
    <img id="image" ng-src="{{ pin.url }}" height="300" width="250">
-   <button id="pin" type="button" ng-click="addPin(pin.url)">Pin-it</button> 
+   <button id="pin" type="button" ng-click="addPin(pin.url)">Bomb-it</button> 
  </div>
 </div>
 

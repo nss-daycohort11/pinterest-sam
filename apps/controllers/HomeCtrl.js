@@ -15,7 +15,6 @@ app.controller("HomeCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "s
     $scope.logout = function(){
       Logout();
       console.log("logged out");
-      $location.path('/');
     };
 
 	var uidRef = new Firebase("https://sam-pinterest.firebaseio.com/users/" + authData.uid);	

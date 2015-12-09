@@ -1,12 +1,13 @@
-app.controller("ProfileCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "storage", "$firebaseArray", "Logout",
-  	function($scope, $location, $firebaseObject, Auth, storage, $firebaseArray, Logout) {
+app.controller("ProfileCtrl", ["$scope", "$location", "$firebaseObject", "Auth", "storage", "$firebaseArray", "Logout","$firebaseAuth",
+  	function($scope, $location, $firebaseObject, Auth, storage, $firebaseArray, Logout, $firebaseAuth) {
   		// Getting UserID
   		var uid = storage.getUserId();
   		console.log("uid", uid);
   		var ref = new Firebase("https://sam-pinterest.firebaseio.com");
   		// Logout
 	    $scope.logout = function(){
-	      Logout();
+	    	$firebaseAuth(ref).$unauth();
+	      // Logout();
 	      console.log("logged out");
 	    };
 
