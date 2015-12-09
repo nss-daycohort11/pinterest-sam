@@ -9,12 +9,6 @@ app.controller("ProfileCtrl", ["$scope", "$location", "$firebaseObject", "Auth",
 	      Logout();
 	      console.log("logged out");
 	    };
-	    // Deleting 
-		$scope.delete = function(pin) {
-			console.log("pin", pin);
-			console.log("user pin delete", $scope.userpins);
-			$scope.userpins.$remove(pin);
-		}
 
 
 		$scope.addImage = function() {
@@ -24,25 +18,36 @@ app.controller("ProfileCtrl", ["$scope", "$location", "$firebaseObject", "Auth",
 			$scope.everypin = $firebaseArray(allPins);
 			console.log("everypin", $scope.everypin);
 			console.log("ProfileCtrl click");
-				$scope.everypin.$add({
+			var newPin = {	
 					url: url,
 					uid: uid
-				})	
+				}
+			$scope.everypin.$add(newPin);	
+			$scope.filteredArray.push(newPin);
 		}
 
-	$scope.filteredArray = [];
-    var pinsRef = new Firebase("https://sam-pinterest.firebaseio.com/pins");
-    var pinsArray = $firebaseArray(pinsRef);
-    pinsArray.$loaded()
-        .then(function(){
-            angular.forEach(pinsArray, function(pin) {
-                console.log("pin", pin);
-                if (uid === pin.uid){
-                    $scope.filteredArray.push(pin);
-                }
-            })
-            return $scope.filteredArray;
-        });
+		$scope.filteredArray = [];
+	    var pinsRef = new Firebase("https://sam-pinterest.firebaseio.com/pins");
+	    var pinsArray = $firebaseArray(pinsRef);
+	    pinsArray.$loaded()
+	        .then(function(){
+	            angular.forEach(pinsArray, function(pin) {
+	                console.log("pin", pin);
+	                if (uid !== pin.uid){
+	                    $scope.filteredArray.push(pin);
+	                }
+	            })
+	            return $scope.filteredArray;
+	        });
+
+	    var newRef = new Firebase("https://sam-pinterest.firebaseio.com/pins/");
+	    $scope.filtered = $firebaseArray(newRef);
+	    var query = newRef.orderByChild("uid").equalTo(uid);
+	    $scope.filteredArray = $firebaseArray(query);   
+    	$scope.delete = function(pin) {
+    		console.log("pin",pin);
+    		$scope.filteredArray.$remove(pin);
+    	} 
 	}
 ]);
 
